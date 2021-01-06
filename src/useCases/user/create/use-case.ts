@@ -1,7 +1,7 @@
-import { IUsersRepository } from "../../repositories/IUsersRepository";
-import { IMailProvider } from "../../providers/IMailProvider";
-import { ICreateUserRequestDTO } from "./CreateUserDTO";
-import { User } from "../../entities/User";
+import { IUsersRepository } from "../../../repositories/user/repository";
+import { IMailProvider } from "../../../providers/IMailProvider";
+import { ICreateUserRequestDTO } from "./dto";
+import { User } from "../../../entities/User";
 
 /**
  * SRP — Single Responsibility Principle
@@ -23,7 +23,7 @@ export class CreateUserUseCase {
 
     const user = new User(data);
 
-    await this.usersRepository.save(user);
+    await this.usersRepository.create(user);
 
     await this.mailProvider.sendMail({
       to: {
@@ -36,7 +36,7 @@ export class CreateUserUseCase {
       },
       subject: "Seja bem vindo!",
       body:
-        "<p>VocÊ está pronto para seguir com o acesso a nossa plataforma.</p>",
+        "<p>Você está pronto para seguir com o acesso a nossa plataforma.</p>",
     });
   }
 }

@@ -1,7 +1,7 @@
-import { PostgresUserRepository } from "../../repositories/implementations/PostgresUserRepository";
-import { MailTrapProvider } from "../../providers/implementations/MailTrapProvider";
-import { CreateUserUseCase } from "./CreateUserUseCase";
-import { CreateUserController } from "./CreateUserController";
+import { PostgresUserRepository } from "../../../repositories/user/implementations/postgres";
+import { MailTrapProvider } from "../../../providers/implementations/MailTrapProvider";
+import { CreateUserUseCase } from "./use-case";
+import { CreateUserController } from "./controller";
 
 const postgresUserRepository = new PostgresUserRepository();
 const mailTrapProvider = new MailTrapProvider();
