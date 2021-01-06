@@ -1,10 +1,8 @@
 import { Router } from "express";
-import { createUserController } from "./useCases/CreateUser";
+import { userRouter } from './routes/user';
 
 const router = Router();
 
-router.post("/users", (req, res) => {
-  return createUserController.handle(req, res);
-});
+router.use(userRouter);
 
 export { router };
