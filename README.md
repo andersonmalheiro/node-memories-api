@@ -1,8 +1,18 @@
-# SOLID principles
+# Node Memories API
 
-Simple REST API made using SOLID principles
+Simple REST API for storing your most important memories
 
-Project structure made following some SOLID principles.
+Project structure following SOLID principles.
 
-- MailTrap provider following SOLID;
-- Fake postgres provider;
+### Scripts
+
+- Run the server:
+  ```
+  npm start
+  ```
+
+### Technologies used in this project:
+
+- [MailTrap](https://mailtrap.io/) provider for sending emails when an user register in the app;
+- Database storage with [Postgres](https://www.postgresql.org/) and [Knex.js](http://knexjs.org/) query builder;
+- Typescript;
