@@ -1,6 +1,11 @@
 import { Request, Response } from "express";
 import { User } from "../../../entities/User";
 import { UpdateUserUseCase } from "./use-case";
+import bcrypt from "bcrypt";
+import { IUpdateUserRequestDTO } from "./dto";
+import { clearObject } from "../../../utils";
+
+const saltRounds = 10;
 
 export class UpdateUserController {
   constructor(private updateUserUseCase: UpdateUserUseCase) {}
@@ -9,12 +14,21 @@ export class UpdateUserController {
     const { email, name, password } = <User>request.body;
     const { id } = request.params;
 
+    let hashedPassword = "";
+
+    if (password) {
+      const salt = bcrypt.genSaltSync(saltRounds);
+      hashedPassword = bcrypt.hashSync(password, salt);
+    }
+
+    const payload: IUpdateUserRequestDTO = clearObject({
+      email,
+      name,
+      password: password ? hashedPassword : "",
+    });
+
     try {
-      await this.updateUserUseCase.execute(id, {
-        email,
-        name,
-        password,
-      });
+      await this.updateUserUseCase.execute(id, payload);
 
       return response.status(204).send();
     } catch (error) {
