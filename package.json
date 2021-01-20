@@ -12,7 +12,8 @@
     "pg": "^8.5.1",
     "ts-node-dev": "^1.0.0-pre.56",
     "typescript": "^3.9.7",
-    "uuidv4": "^6.2.1"
+    "uuidv4": "^6.2.1",
+    "yup": "^0.32.8"
   },
   "devDependencies": {
     "@types/bcrypt": "^3.0.0",
